@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "@metroskool/brand/tokens.css";
+
+@source "../../../packages/web-ui/src/**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx}";
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  font-family: var(--ms-font-sans);
+  color: var(--ms-color-deep-purple);
+  background:
+    radial-gradient(1200px 480px at 10% -10%, var(--ms-color-soft-lavender), transparent 60%),
+    var(--ms-color-white);
+}

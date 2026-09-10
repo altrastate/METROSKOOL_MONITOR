@@ -1,0 +1,17 @@
+name: metroskool_monitor_offline
+description: >
+  Encrypted, idempotent attendance queue for Metroskool Monitor mobile.
+  Supabase remains authoritative. Not part of the pnpm workspace.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  metroskool_flutter_core:
+    path: ../../packages/flutter_core
+
+dev_dependencies:
+  lints: ^5.1.1
+  test: ^1.25.15

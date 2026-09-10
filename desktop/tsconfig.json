@@ -1,0 +1,10 @@
+{
+  "extends": "@metroskool/config/tsconfig/react.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/**/*.test.ts", "dist", "node_modules", "src-tauri"]
+}

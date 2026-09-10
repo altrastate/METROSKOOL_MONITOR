@@ -1,0 +1,39 @@
+{
+  "name": "metroskool-monitor-web",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Metroskool Monitor — class, attendance, and teaching monitoring",
+  "type": "module",
+  "scripts": {
+    "copy:brand": "node ../../scripts/copy-brand-assets.mjs METROSKOOL_MONITOR/web/public/brand",
+    "predev": "pnpm copy:brand",
+    "prebuild": "pnpm copy:brand",
+    "dev": "next dev --port 3004",
+    "build": "next build",
+    "start": "next start --port 3004",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@metroskool/audit": "workspace:*",
+    "@metroskool/brand": "workspace:*",
+    "@metroskool/contracts": "workspace:*",
+    "@metroskool/supabase-client": "workspace:*",
+    "@metroskool/web-ui": "workspace:*",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "exceljs": "^4.4.0",
+    "metroskool-monitor-offline": "workspace:*",
+    "next": "16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.9.3"
+  }
+}

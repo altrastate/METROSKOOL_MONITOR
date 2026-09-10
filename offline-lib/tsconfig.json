@@ -1,0 +1,11 @@
+{
+  "extends": "@metroskool/config/tsconfig/library.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": ["ES2022", "DOM"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "dist", "node_modules"]
+}

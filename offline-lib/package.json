@@ -1,0 +1,23 @@
+{
+  "name": "metroskool-monitor-offline",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monitor-private encrypted offline attendance queue. Supabase remains authoritative.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "node -e \"process.exit(0)\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@metroskool/config": "workspace:*",
+    "@types/node": "^26.4.1",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

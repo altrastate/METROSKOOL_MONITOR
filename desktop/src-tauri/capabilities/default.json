@@ -1,0 +1,12 @@
+{
+  "identifier": "default",
+  "description": "Metroskool Monitor desktop — teaching window + system-browser opener. No privileged keys.",
+  "windows": ["main", "monitor-workspace"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:webview:default",
+    "core:webview:allow-create-webview-window",
+    "opener:default"
+  ]
+}

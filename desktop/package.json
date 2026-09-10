@@ -1,0 +1,36 @@
+{
+  "name": "metroskool-monitor-desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Metroskool Monitor Windows attendance shell (Tauri 2). Opens /monitor only. No service role.",
+  "type": "module",
+  "scripts": {
+    "copy:brand": "node ../../scripts/copy-brand-assets.mjs METROSKOOL_MONITOR/desktop/public/brand && node ../../scripts/copy-monitor-desktop-icon.mjs",
+    "predev": "pnpm copy:brand",
+    "prebuild": "pnpm copy:brand",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@metroskool/brand": "workspace:*",
+    "@metroskool/web-ui": "workspace:*",
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/plugin-opener": "^2.5.0",
+    "metroskool-monitor-offline": "workspace:*",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@metroskool/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tauri-apps/cli": "^2.9.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.2"
+  }
+}
