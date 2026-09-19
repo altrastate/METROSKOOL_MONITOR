@@ -38,3 +38,29 @@ APK output (confirmed on this branch):
 | arm64-v8a (phones) | `mobile/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` |
 | x86_64 (emulator) | `mobile/build/app/outputs/flutter-apk/app-x86_64-debug.apk` |
 | armeabi-v7a | `mobile/build/app/outputs/flutter-apk/app-armeabi-v7a-debug.apk` |
+
+## Signed release APK (Play upload)
+
+Release builds use an **upload** keystore. The JKS and `android/key.properties` are
+gitignored — do not commit passwords or the keystore.
+
+```bash
+cd mobile/android
+# If you do not already have an upload key:
+#   keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA \
+#     -keysize 2048 -validity 10000 -alias upload
+cp key.properties.example key.properties
+# Fill storePassword, keyPassword, keyAlias, storeFile locally.
+cd ..
+flutter build apk --release
+```
+
+Store identity (from `pubspec.yaml` / Gradle):
+
+- applicationId: `com.altrastate.metroskool.monitor`
+- versionName: `0.0.1`
+- versionCode: `1`
+
+Release APK path:
+
+`mobile/build/app/outputs/flutter-apk/app-release.apk`
