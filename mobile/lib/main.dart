@@ -153,143 +153,148 @@ class _MonitorHomePageState extends State<MonitorHomePage> {
           ),
         ),
         child: SafeArea(
-          child: ListView(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
-            children: [
-              Text(
-                'TEACHING MONITOR',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: _secondaryPurple,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.w600,
-                    ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Metroskool Monitor',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: _deepPurple,
-                      fontWeight: FontWeight.w600,
-                    ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Architecture for Campus Excellence',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: _deepPurple.withValues(alpha: 0.7),
-                    ),
-              ),
-              const SizedBox(height: 20),
-              _Card(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Grade 8A · today',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: _deepPurple,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'Queue offline marks on this device. Reconnect uses the same idempotency key so an attendance row is never duplicated.',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: _deepPurple.withValues(alpha: 0.7),
-                            height: 1.4,
-                          ),
-                    ),
-                  ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'TEACHING MONITOR',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: _secondaryPurple,
+                        letterSpacing: 1.2,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              for (final learner in _learners) ...[
-                _LearnerCard(
-                  learner: learner,
-                  status: _draftStatus[learner.id] ?? 'present',
-                  queued: _pending.any(
-                    (item) =>
-                        item.idempotencyKey == '$_demoRegisterId:${learner.id}',
-                  ),
-                  onStatus: (value) {
-                    setState(() => _draftStatus[learner.id] = value);
-                  },
-                  onQueue: () => _queueMark(learner),
+                const SizedBox(height: 8),
+                Text(
+                  'Metroskool Monitor',
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        color: _deepPurple,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
-                const SizedBox(height: 12),
-              ],
-              _Card(
-                borderColor: _accentYellow.withValues(alpha: 0.7),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Encrypted offline queue',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: _deepPurple,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    const SizedBox(height: 8),
-                    if (_pending.isEmpty)
+                const SizedBox(height: 8),
+                Text(
+                  'Architecture for Campus Excellence',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: _deepPurple.withValues(alpha: 0.7),
+                      ),
+                ),
+                const SizedBox(height: 20),
+                _Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        'No queued marks. Offline payloads stay sealed on this device.',
+                        'Grade 8A · today',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: _deepPurple,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Queue offline marks on this device. Reconnect uses the same idempotency key so an attendance row is never duplicated.',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: _deepPurple.withValues(alpha: 0.7),
+                              height: 1.4,
                             ),
-                      )
-                    else
-                      ..._pending.map((item) {
-                        final learner = _learners
-                            .where((row) =>
-                                item.idempotencyKey.endsWith(':${row.id}'))
-                            .firstOrNull;
-                        final sealed = !item.payloadJson.contains('absent') &&
-                            !item.payloadJson.contains('present') &&
-                            !item.payloadJson.contains('late') &&
-                            !item.payloadJson.contains('excused');
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 6),
-                          child: Text(
-                            '${learner?.name ?? item.idempotencyKey} · pending · ${sealed ? 'encrypted' : 'unsealed'}',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: _deepPurple,
-                                    ),
-                          ),
-                        );
-                      }),
-                    const SizedBox(height: 12),
-                    OutlinedButton(
-                      onPressed: _pending.isEmpty ? null : _ackAll,
-                      child: const Text('Demo-ack queue'),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              if (_error != null) ...[
-                const SizedBox(height: 12),
-                Text(_error!, style: const TextStyle(color: _accentRed)),
-              ],
-              if (_message != null) ...[
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
+                for (final learner in _learners) ...[
+                  _LearnerCard(
+                    learner: learner,
+                    status: _draftStatus[learner.id] ?? 'present',
+                    queued: _pending.any(
+                      (item) =>
+                          item.idempotencyKey ==
+                          '$_demoRegisterId:${learner.id}',
+                    ),
+                    onStatus: (value) {
+                      setState(() => _draftStatus[learner.id] = value);
+                    },
+                    onQueue: () => _queueMark(learner),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+                _Card(
+                  borderColor: _accentYellow.withValues(alpha: 0.7),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Encrypted offline queue',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: _deepPurple,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ),
+                      const SizedBox(height: 8),
+                      if (_pending.isEmpty)
+                        Text(
+                          'No queued marks. Offline payloads stay sealed on this device.',
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: _deepPurple.withValues(alpha: 0.7),
+                                  ),
+                        )
+                      else
+                        ..._pending.map((item) {
+                          final learner = _learners
+                              .where((row) =>
+                                  item.idempotencyKey.endsWith(':${row.id}'))
+                              .firstOrNull;
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: Text(
+                              '${learner?.name ?? item.idempotencyKey} · pending · encrypted',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: _deepPurple,
+                                  ),
+                            ),
+                          );
+                        }),
+                      const SizedBox(height: 12),
+                      OutlinedButton(
+                        onPressed: _pending.isEmpty ? null : _ackAll,
+                        child: const Text('Demo-ack queue'),
+                      ),
+                    ],
+                  ),
+                ),
+                if (_error != null) ...[
+                  const SizedBox(height: 12),
+                  Text(_error!, style: const TextStyle(color: _accentRed)),
+                ],
+                if (_message != null) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    _message!,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: _deepPurple,
+                          height: 1.4,
+                        ),
+                  ),
+                ],
+                const SizedBox(height: 24),
                 Text(
-                  _message!,
+                  '© Altrastate Technologies · Monitor for teachers',
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: _deepPurple,
-                        height: 1.4,
+                        color: _deepPurple.withValues(alpha: 0.45),
                       ),
                 ),
               ],
-              const SizedBox(height: 24),
-              Text(
-                '© Altrastate Technologies · Monitor for teachers',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: _deepPurple.withValues(alpha: 0.45),
-                    ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

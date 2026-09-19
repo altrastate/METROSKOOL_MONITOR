@@ -14,7 +14,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Queued'), findsOneWidget);
-    expect(find.textContaining('encrypted'), findsOneWidget);
+    expect(find.textContaining('pending · encrypted'), findsOneWidget);
 
     await tester.tap(find.text('Queue offline mark').first);
     await tester.pumpAndSettle();
