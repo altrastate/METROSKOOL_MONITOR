@@ -86,7 +86,8 @@ class MonitorAttendanceQueue implements SyncQueue {
 
   static Uint8List _randomKey() {
     final random = Random.secure();
-    return Uint8List.fromList(List<int>.generate(32, (_) => random.nextInt(256)));
+    return Uint8List.fromList(
+        List<int>.generate(32, (_) => random.nextInt(256)));
   }
 
   Future<EnqueueResult> enqueueAttendance({
@@ -111,7 +112,8 @@ class MonitorAttendanceQueue implements SyncQueue {
   }
 
   AttendancePayload decode(SyncQueueItem item) {
-    final decoded = jsonDecode(_box.open(item.payloadJson)) as Map<String, dynamic>;
+    final decoded =
+        jsonDecode(_box.open(item.payloadJson)) as Map<String, dynamic>;
     return AttendancePayload.fromJson(decoded.cast<String, Object?>());
   }
 

@@ -12,7 +12,8 @@ void main() {
       status: 'absent',
       idempotencyKey: 'offline-mark-1',
     );
-    final first = await queue.enqueueAttendance(schoolId: school, payload: payload);
+    final first =
+        await queue.enqueueAttendance(schoolId: school, payload: payload);
     final second = await queue.enqueueAttendance(
       schoolId: school,
       payload: AttendancePayload(
