@@ -61,6 +61,10 @@ Store identity (from `pubspec.yaml` / Gradle):
 - versionName: `0.0.1`
 - versionCode: `1`
 
-Release APK path:
+Release APK path (signed on this branch):
 
-`mobile/build/app/outputs/flutter-apk/app-release.apk`
+`mobile/build/app/outputs/flutter-apk/app-release.apk` (45.4 MB)
+
+Upload certificate SHA-256:
+
+`A9:C5:05:50:A9:87:89:13:97:6F:40:88:B8:D5:63:D2:A0:DD:09:02:B3:A1:5E:8E:4A:0E:54:1E:6C:52:EF:E3`
