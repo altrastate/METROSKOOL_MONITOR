@@ -1,0 +1,12 @@
+name: metroskool_flutter_core
+description: >
+  Shared Flutter/Dart types for Metroskool mobile modules.
+  Vendored in METROSKOOL_MONITOR so this repo can build without the suite root.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dev_dependencies:
+  lints: ^5.1.1
