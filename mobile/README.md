@@ -24,8 +24,17 @@ cd mobile
 flutter pub get
 flutter test
 flutter build apk --debug
+# or a smaller per-ABI package:
+flutter build apk --debug --split-per-abi
 ```
 
-The APK is written to:
+Application id: `com.altrastate.metroskool.monitor`
 
-`mobile/build/app/outputs/flutter-apk/app-debug.apk`
+APK output (confirmed on this branch):
+
+| Artifact | Path |
+| --- | --- |
+| Universal debug | `mobile/build/app/outputs/flutter-apk/app-debug.apk` |
+| arm64-v8a (phones) | `mobile/build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk` |
+| x86_64 (emulator) | `mobile/build/app/outputs/flutter-apk/app-x86_64-debug.apk` |
+| armeabi-v7a | `mobile/build/app/outputs/flutter-apk/app-armeabi-v7a-debug.apk` |
