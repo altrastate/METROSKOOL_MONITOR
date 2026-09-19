@@ -24,6 +24,7 @@ android/captures/
 key.properties
 **/*.keystore
 **/*.jks
+**/*.p12
 
 # IDE
 .idea/
